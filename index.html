@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cruscotto Attività NP</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f5f3;
+    --bg3: #eeede9;
+    --text: #1a1a18;
+    --text2: #5f5e5a;
+    --text3: #888780;
+    --border: rgba(0,0,0,0.12);
+    --border2: rgba(0,0,0,0.2);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a;
+      --bg2: #252523;
+      --bg3: #2e2e2b;
+      --text: #f0efe9;
+      --text2: #a8a79f;
+      --text3: #6b6a63;
+      --border: rgba(255,255,255,0.1);
+      --border2: rgba(255,255,255,0.18);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.5; min-height: 100vh; }
+  .shell { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  /* Header */
+  header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon { width: 36px; height: 36px; background: var(--text); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-icon svg { fill: var(--bg); width: 20px; height: 20px; }
+  .logo-text h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  .logo-text p { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .header-right { text-align: right; }
+  .update-badge { font-size: 11px; color: var(--text3); background: var(--bg2); border: 0.5px solid var(--border); border-radius: 20px; padding: 4px 10px; display: inline-block; }
+
+  /* Metrics strip */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 1.75rem; }
+  .metric { background: var(--bg2); border-radius: var(--radius-sm); padding: 14px 16px; }
+  .metric-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .metric-value { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
+  .metric-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+  /* Filters */
+  .toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 1.25rem; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 0.5px solid var(--border2); background: transparent; color: var(--text2); cursor: pointer; font-family: var(--font); transition: all 0.15s; }
+  .filter-btn:hover { border-color: var(--text3); color: var(--text); }
+  .filter-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .sort-select { font-size: 12px; padding: 5px 10px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); background: var(--bg); color: var(--text2); cursor: pointer; font-family: var(--font); }
+
+  /* Cards */
+  .projects { display: flex; flex-direction: column; gap: 10px; }
+  .card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; transition: border-color 0.15s; position: relative; overflow: hidden; }
+  .card:hover { border-color: var(--border2); }
+  .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; }
+  .card.crit-alta::before { background: #E24B4A; }
+  .card.crit-media::before { background: #EF9F27; }
+  .card.crit-bassa::before { background: #639922; }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .card-meta { flex: 1; min-width: 0; }
+  .card-id { font-size: 11px; font-family: var(--font-mono); color: var(--text3); margin-bottom: 4px; }
+  .card-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-tipo { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; align-items: flex-start; flex-shrink: 0; }
+  .badge { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+
+  /* State badges */
+  .stato-in-corso { background: #dbeafe; color: #1e40af; }
+  .stato-attesa-cliente { background: #fef3c7; color: #92400e; }
+  .stato-attesa-documenti { background: #ede9fe; color: #5b21b6; }
+  .stato-sospeso { background: #f3f4f6; color: #374151; }
+  .stato-completato { background: #d1fae5; color: #065f46; }
+  .stato-da-avviare { background: #fce7f3; color: #9d174d; }
+  .stato-revisione { background: #e0f2fe; color: #075985; }
+  .stato-da-chiudere { background: #fef9c3; color: #854d0e; }
+  @media (prefers-color-scheme: dark) {
+    .stato-in-corso { background: #1e3a5f; color: #93c5fd; }
+    .stato-attesa-cliente { background: #451a03; color: #fcd34d; }
+    .stato-attesa-documenti { background: #2e1065; color: #c4b5fd; }
+    .stato-sospeso { background: #1f2937; color: #9ca3af; }
+    .stato-completato { background: #064e3b; color: #6ee7b7; }
+    .stato-da-avviare { background: #4a044e; color: #f0abfc; }
+    .stato-revisione { background: #0c4a6e; color: #7dd3fc; }
+    .stato-da-chiudere { background: #422006; color: #fde68a; }
+  }
+
+  /* Priority badges */
+  .prio-alta { background: #fee2e2; color: #991b1b; }
+  .prio-media { background: #fef3c7; color: #78350f; }
+  .prio-bassa { background: #f0fdf4; color: #14532d; }
+  @media (prefers-color-scheme: dark) {
+    .prio-alta { background: #450a0a; color: #fca5a5; }
+    .prio-media { background: #422006; color: #fcd34d; }
+    .prio-bassa { background: #052e16; color: #86efac; }
+  }
+
+  /* Card body grid */
+  .card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-bottom: 14px; }
+  @media (max-width: 500px) { .card-body { grid-template-columns: 1fr; } }
+  .field-label { font-size: 11px; color: var(--text3); margin-bottom: 3px; display: flex; align-items: center; gap: 4px; }
+  .field-value { font-size: 13px; color: var(--text2); line-height: 1.4; }
+  .field-value.highlight { color: var(--text); font-weight: 500; }
+
+  /* Card footer */
+  .card-footer { border-top: 0.5px solid var(--border); padding-top: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .card-path { font-size: 11px; font-family: var(--font-mono); color: var(--text3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+  .card-date { font-size: 11px; color: var(--text3); }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 3rem 1rem; color: var(--text3); }
+  .empty-icon { font-size: 32px; margin-bottom: 8px; }
+
+  /* Footer */
+  footer { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer p { font-size: 12px; color: var(--text3); }
+
+  /* Search */
+  .search-wrap { position: relative; }
+  .search-wrap input { font-size: 13px; padding: 6px 12px 6px 32px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); background: var(--bg); color: var(--text); font-family: var(--font); width: 200px; }
+  .search-wrap svg { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text3); width: 14px; height: 14px; }
+
+  /* Count */
+  .count-label { font-size: 12px; color: var(--text3); }
+
+  @media (max-width: 600px) {
+    .card-header { flex-direction: column; }
+    .badges { flex-direction: row; }
+    .card-title { white-space: normal; }
+    .search-wrap input { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 3h2v-2h2v2h2v2h-2v2h-2v-2h-2v-2z"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>Cruscotto Attività NP</h1>
+        <p>Ecosistema NP — Plancia di Comando</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="update-badge" id="last-update">Aggiornato: —</span>
+    </div>
+  </header>
+
+  <div class="metrics" id="metrics-strip"></div>
+
+  <div class="toolbar">
+    <div class="filters" id="filters-bar" role="group" aria-label="Filtra per stato"></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <span class="count-label" id="count-label"></span>
+      <div class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="search-input" placeholder="Cerca progetto…" aria-label="Cerca progetto">
+      </div>
+    </div>
+  </div>
+
+  <div class="projects" id="projects-list" aria-live="polite"></div>
+
+  <footer>
+    <p>Ecosistema NP &mdash; Segreteria e Coordinamento</p>
+    <p id="footer-version"></p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {
+  version: "v0.1",
+  aggiornato: "24/06/2026",
+  progetti: [
+    {
+      id: "NP-CLI-001",
+      titolo: "Revisione bozza bilancio — Renovra SRL",
+      tipo: "Cliente",
+      apertura: "24/06/2026",
+      stato: "attesa-cliente",
+      statoLabel: "In attesa cliente",
+      priorita: "media",
+      prioritaLabel: "Media",
+      criticita: "media",
+      ultimaAzione: "Bozza revisionata; note predisposte e inviate al cliente.",
+      prossimaAzione: "Attendere nuova bozza di bilancio da Renovra SRL.",
+      scadenza: "da integrare",
+      ambiente: "Progetto Claude \"Revisioni\"",
+      note: "Gruppo HOLCON — verificare operazioni infragruppo.",
+      percorso: "100.CLIENTI\\RENOVRA_SRL\\NP-CLI-001_Revisione_Bozza_Bilancio\\"
+    },
+    {
+      id: "NP-GOV-001",
+      titolo: "Ecosistema NP — Fase 2 messa in esercizio",
+      tipo: "Governance",
+      apertura: "24/06/2026",
+      stato: "in-corso",
+      statoLabel: "In corso",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Creazione Registro Progetti Attivi v0.1 e Registro Versioni v0.1.",
+      prossimaAzione: "Validare registri in esercizio; completare protocollo aggiornamento Segreteria.",
+      scadenza: "da integrare",
+      ambiente: "UNIVERSO CLAUDE / Claude Code",
+      note: "Fondativo — blocca l'intero ecosistema se interrotto.",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
+    },
+    {
+      id: "NP-GOV-002",
+      titolo: "Normalizzazione soci digitali legacy",
+      tipo: "Governance",
+      apertura: "24/06/2026",
+      stato: "sospeso",
+      statoLabel: "Sospeso",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Classificato come sospeso in attesa di NP-GOV-001.",
+      prossimaAzione: "Riprendere dopo completamento NP-GOV-001.",
+      scadenza: "Subordinato a NP-GOV-001",
+      ambiente: "UNIVERSO CLAUDE / Claude Code",
+      note: "Rischio: promuovere soci non conformi se anticipato.",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
+    },
+    {
+      id: "NP-GOV-003",
+      titolo: "Test scheda standard — Primo caso reale",
+      tipo: "Governance",
+      apertura: "24/06/2026",
+      stato: "completato",
+      statoLabel: "Completato",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "bassa",
+      ultimaAzione: "Skill /apri-progetto eseguita su NP-CLI-001 (Renovra SRL) con esito positivo.",
+      prossimaAzione: "Aggiornare stato nel Registro Progetti Attivi.",
+      scadenza: "—",
+      ambiente: "UNIVERSO CLAUDE / Claude Code",
+      note: "Test completato. Scheda Standard v0.1 validata.",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
+    },
+    {
+      id: "NP-GOV-004",
+      titolo: "Cruscotto Attività NP",
+      tipo: "Governance",
+      apertura: "24/06/2026",
+      stato: "in-corso",
+      statoLabel: "In corso",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "bassa",
+      ultimaAzione: "Creazione CRUSCOTTO_ATTIVITA_NP.md v0.1 e cruscotto_np.html.",
+      prossimaAzione: "Aggiungere NP-GOV-004 al Registro Progetti Attivi; configurare aggiornamento automatico.",
+      scadenza: "—",
+      ambiente: "UNIVERSO CLAUDE / Claude Code",
+      note: "Documento di coordinamento. Non blocca attività operative.",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
+    }
+  ]
+};
+
+const STATI = [
+  { key: "all", label: "Tutti" },
+  { key: "in-corso", label: "In corso" },
+  { key: "attesa-cliente", label: "In attesa cliente" },
+  { key: "attesa-documenti", label: "In attesa documenti" },
+  { key: "sospeso", label: "Sospeso" },
+  { key: "completato", label: "Completato" },
+  { key: "da-avviare", label: "Da avviare" },
+  { key: "da-chiudere", label: "Da chiudere" }
+];
+
+const STATO_CLASS = {
+  "in-corso": "stato-in-corso",
+  "attesa-cliente": "stato-attesa-cliente",
+  "attesa-documenti": "stato-attesa-documenti",
+  "sospeso": "stato-sospeso",
+  "completato": "stato-completato",
+  "da-avviare": "stato-da-avviare",
+  "revisione": "stato-revisione",
+  "da-chiudere": "stato-da-chiudere"
+};
+
+let activeFilter = "all";
+let searchQuery = "";
+
+function metricIcon(stato) {
+  const icons = {
+    "in-corso": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>`,
+    "attesa-cliente": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    "sospeso": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>`,
+    "completato": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>`
+  };
+  return icons[stato] || "";
+}
+
+function buildMetrics() {
+  const totale = DATA.progetti.length;
+  const stati = {};
+  DATA.progetti.forEach(p => { stati[p.stato] = (stati[p.stato] || 0) + 1; });
+
+  const strip = document.getElementById("metrics-strip");
+  const items = [
+    { label: "Totale", value: totale, sub: "progetti" },
+    { label: "In corso", value: stati["in-corso"] || 0, sub: "attivi" },
+    { label: "In attesa", value: stati["attesa-cliente"] || 0, sub: "cliente/docs" },
+    { label: "Sospeso", value: stati["sospeso"] || 0, sub: "" },
+    { label: "Completato", value: stati["completato"] || 0, sub: "" }
+  ];
+  strip.innerHTML = items.map(m => `
+    <div class="metric">
+      <div class="metric-label">${m.label}</div>
+      <div class="metric-value">${m.value}</div>
+      ${m.sub ? `<div class="metric-sub">${m.sub}</div>` : ""}
+    </div>
+  `).join("");
+}
+
+function buildFilters() {
+  const bar = document.getElementById("filters-bar");
+  const usedStati = new Set(DATA.progetti.map(p => p.stato));
+  bar.innerHTML = STATI
+    .filter(s => s.key === "all" || usedStati.has(s.key))
+    .map(s => `<button class="filter-btn${s.key === activeFilter ? " active" : ""}" onclick="setFilter('${s.key}', this)">${s.label}</button>`)
+    .join("");
+}
+
+function setFilter(key, btn) {
+  activeFilter = key;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  render();
+}
+
+function fieldIcon(type) {
+  const icons = {
+    last: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polygon points="5 3 19 12 5 21 5 3"/></svg>`,
+    next: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`,
+    cal: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+    env: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    note: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>`
+  };
+  return icons[type] || "";
+}
+
+function cardHTML(p) {
+  return `
+  <article class="card crit-${p.criticita}" data-stato="${p.stato}" data-search="${(p.id + " " + p.titolo + " " + p.tipo).toLowerCase()}">
+    <div class="card-header">
+      <div class="card-meta">
+        <div class="card-id">${p.id}</div>
+        <div class="card-title">${p.titolo}</div>
+        <div class="card-tipo">${p.tipo}</div>
+      </div>
+      <div class="badges">
+        <span class="badge ${STATO_CLASS[p.stato] || ""}">${p.statoLabel}</span>
+        <span class="badge prio-${p.priorita}">↑ ${p.prioritaLabel}</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div>
+        <div class="field-label">${fieldIcon("last")} Ultima azione</div>
+        <div class="field-value">${p.ultimaAzione}</div>
+      </div>
+      <div>
+        <div class="field-label">${fieldIcon("next")} Prossima azione</div>
+        <div class="field-value highlight">${p.prossimaAzione}</div>
+      </div>
+      <div>
+        <div class="field-label">${fieldIcon("cal")} Scadenza</div>
+        <div class="field-value">${p.scadenza}</div>
+      </div>
+      <div>
+        <div class="field-label">${fieldIcon("env")} Ambiente</div>
+        <div class="field-value">${p.ambiente}</div>
+      </div>
+      ${p.note ? `<div style="grid-column: 1/-1"><div class="field-label">${fieldIcon("note")} Note</div><div class="field-value">${p.note}</div></div>` : ""}
+    </div>
+    <div class="card-footer">
+      <span class="card-path">${p.percorso}</span>
+      <span class="card-date">Apertura: ${p.apertura}</span>
+    </div>
+  </article>`;
+}
+
+function render() {
+  const list = document.getElementById("projects-list");
+  let filtered = DATA.progetti.filter(p => {
+    const matchStato = activeFilter === "all" || p.stato === activeFilter;
+    const matchSearch = !searchQuery || (p.id + " " + p.titolo + " " + p.tipo).toLowerCase().includes(searchQuery);
+    return matchStato && matchSearch;
+  });
+
+  document.getElementById("count-label").textContent = filtered.length + " progett" + (filtered.length === 1 ? "o" : "i");
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="empty"><div class="empty-icon">○</div><p>Nessun progetto trovato.</p></div>`;
+    return;
+  }
+  list.innerHTML = filtered.map(cardHTML).join("");
+}
+
+function init() {
+  document.getElementById("last-update").textContent = "Aggiornato: " + DATA.aggiornato;
+  document.getElementById("footer-version").textContent = DATA.version + " · Segreteria NP";
+  buildMetrics();
+  buildFilters();
+  render();
+
+  document.getElementById("search-input").addEventListener("input", function() {
+    searchQuery = this.value.trim().toLowerCase();
+    render();
+  });
+}
+
+init();
+</script>
+</body>
+</html>
