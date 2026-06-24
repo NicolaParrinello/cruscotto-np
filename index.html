@@ -235,17 +235,17 @@ const DATA = {
       titolo: "Cruscotto Attività NP",
       tipo: "Governance",
       apertura: "24/06/2026",
-      stato: "in-corso",
-      statoLabel: "In corso",
+      stato: "completato",
+      statoLabel: "Completato",
       priorita: "alta",
       prioritaLabel: "Alta",
       criticita: "bassa",
-      ultimaAzione: "Creazione CRUSCOTTO_ATTIVITA_NP.md v0.1 e cruscotto_np.html.",
-      prossimaAzione: "Aggiungere NP-GOV-004 al Registro Progetti Attivi; configurare aggiornamento automatico.",
+      ultimaAzione: "Prima release pubblicata su GitHub Pages. Correzioni tecniche applicate (stati, metrica In attesa, NP-GOV-004).",
+      prossimaAzione: "Aggiornare Registro e Cruscotto nella stessa sessione ad ogni cambio di stato progetto.",
       scadenza: "—",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Documento di coordinamento. Non blocca attività operative.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
+      ambiente: "UNIVERSO CLAUDE / Claude Code + GitHub Pages",
+      note: "Cruscotto operativo assistito da Claude Code. Non è un sistema live automatico: è una vista statica aggiornata tramite modifica/push dei dati. Il Registro Progetti Attivi resta la fonte operativa principale.",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\ + web-cruscotto\\"
     }
   ]
 };
@@ -255,6 +255,7 @@ const STATI = [
   { key: "in-corso", label: "In corso" },
   { key: "attesa-cliente", label: "In attesa cliente" },
   { key: "attesa-documenti", label: "In attesa documenti" },
+  { key: "revisione-interna", label: "In revisione interna" },
   { key: "sospeso", label: "Sospeso" },
   { key: "completato", label: "Completato" },
   { key: "da-avviare", label: "Da avviare" },
@@ -268,7 +269,7 @@ const STATO_CLASS = {
   "sospeso": "stato-sospeso",
   "completato": "stato-completato",
   "da-avviare": "stato-da-avviare",
-  "revisione": "stato-revisione",
+  "revisione-interna": "stato-revisione",
   "da-chiudere": "stato-da-chiudere"
 };
 
@@ -294,7 +295,7 @@ function buildMetrics() {
   const items = [
     { label: "Totale", value: totale, sub: "progetti" },
     { label: "In corso", value: stati["in-corso"] || 0, sub: "attivi" },
-    { label: "In attesa", value: stati["attesa-cliente"] || 0, sub: "cliente/docs" },
+    { label: "In attesa", value: (stati["attesa-cliente"] || 0) + (stati["attesa-documenti"] || 0), sub: "cliente/docs" },
     { label: "Sospeso", value: stati["sospeso"] || 0, sub: "" },
     { label: "Completato", value: stati["completato"] || 0, sub: "" }
   ];
