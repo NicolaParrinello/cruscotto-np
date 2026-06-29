@@ -181,7 +181,7 @@
 <script>
 const DATA = {
   version: "v0.1",
-  aggiornato: "29/06/2026 — agg. 10",
+  aggiornato: "29/06/2026 — agg. 11",
   progetti: [
     {
       id: "NP-CLI-001",
@@ -223,16 +223,16 @@ const DATA = {
       titolo: "Baglio Oro — Controllo di Gestione & Cruscotto Direzionale",
       tipo: "Cliente (controllo di gestione)",
       apertura: "25/06/2026",
-      stato: "attesa-cliente",
-      statoLabel: "In attesa cliente",
+      stato: "in-corso",
+      statoLabel: "In corso — avvio fase impianto 01/07/2026",
       priorita: "alta",
       prioritaLabel: "Alta",
       criticita: "media",
-      ultimaAzione: "Apertura fascicolo via /apri-progetto: creata cartella, Scheda di Apertura e file iniziali. Preventivo/mandato Metis 11/06/2026 in trattativa (non accettato).",
-      prossimaAzione: "Applicazione metodologia KN-01 — configurazione ibrida Full Costing + Direct Costing per impostazione sistema di controllo di gestione Baglio Oro; in parallelo caricare il PDF del preventivo/mandato Metis in 03_Documenti_Ricevuti e attendere accettazione formale.",
-      scadenza: "da integrare — scadenza decisionale non comunicata",
+      ultimaAzione: "Mandato Metis 11/06/2026 FIRMATO (incarico decorrenza 01/07/2026, durata 24 mesi fino al 30/06/2028). Fascicolo predisposto con Registro Impegni da Mandato (06_).",
+      prossimaAzione: "Fissare il calendario di luglio con Giuseppe Laudicina / responsabile amministrativa entro 05/07/2026 e creare gli eventi in Google Calendar; applicare la metodologia KN-01 (Full + Direct Costing ibrido); caricare il PDF del mandato firmato in 03_Documenti_Ricevuti.",
+      scadenza: "Avvio fase impianto 01/07/2026; primo calendario entro 05/07/2026",
       ambiente: "Progetto Claude \"Partner CdG & BSC — Metis\"",
-      note: "Incarico in trattativa: nessuna analisi tecnica prima dell'accettazione. Terreni DA VERIFICARE (100 ha vs 80 ha). Attività mista (vino, vigneto/oliveto, eventi/ricettiva) con metodi di costing differenziati. Primo lavoro reale destinato al Partner CdG & BSC (NP-GOV-006).",
+      note: "Mandato firmato — fase impianto da avviare dal 01/07/2026. Terreni DA VERIFICARE (100 ha vs 80 ha). Attività mista (vino, vigneto/oliveto, eventi/ricettiva) con metodi di costing differenziati. Primo lavoro reale destinato al Partner CdG & BSC (NP-GOV-006).",
       percorso: "100.CLIENTI\\BAGLIO_ORO\\NP-CLI-003_Controllo_Gestione\\"
     },
     {
@@ -430,14 +430,14 @@ const PRESIDIO = {
   titolo: "Presidio Impegni da Mandato",
   sottotitolo: "Vista sintetica (sola lettura). Fonte unica del dato: 06_Registro_Impegni_Mandato.md nel fascicolo cliente. Appuntamenti reali: Google Calendar.",
   righe: [
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-07 Lug", impegni: "4 interventi sede + riunione settimanale", stato: "🔴 da pianificare", azione: "Fissare calendario del mese con Giuseppe Laudicina / responsabile amministrativa" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-08 Ago", impegni: "4 interventi sede + riunione settimanale", stato: "🔴 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-09 Set", impegni: "4 interventi sede + riunione settimanale", stato: "🔴 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-10 Ott", impegni: "4 interventi sede + riunione settimanale", stato: "🔴 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-11/12", impegni: "da definire + riunione settimanale", stato: "🔴 da pianificare", azione: "Mappatura, strumenti di rilevazione, budget 2027" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2027-01 → 2028-06", impegni: "Presidio mensile fase esercizio", stato: "⚪ non ancora attivo", azione: "Attivare righe mensili al rollover di dicembre 2026" }
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-07 Lug", impegni: "4 interventi sede + riunione settimanale", entro: "05/07/2026", stato: "🟡 da pianificare", azione: "Fissare calendario del mese con Giuseppe Laudicina / responsabile amministrativa" },
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-08 Ago", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-09 Set", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-10 Ott", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-11/12", impegni: "da definire + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Mappatura, strumenti di rilevazione, budget 2027" },
+    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2027-01 → 2028-06", impegni: "Presidio mensile fase esercizio", entro: "—", stato: "⚪ non ancora attivo", azione: "Attivare righe mensili al rollover di dicembre 2026" }
   ],
-  legenda: "Semaforo: 🟢 fissato/svolto · 🟡 da fissare entro fine mese · 🔴 scoperto/scaduto · ⚪ non ancora attivo."
+  legenda: "Semaforo: 🟢 tutto fissato/svolto · 🟡 da pianificare ma non ancora scaduto (entro la data limite) · 🔴 scaduto / non fissato entro il termine / non svolto · ⚪ non ancora attivo."
 };
 
 const STATI = [
@@ -506,6 +506,7 @@ function buildPresidio() {
       <td>${r.cliente}</td>
       <td class="presidio-mese">${r.mese}</td>
       <td>${r.impegni}</td>
+      <td class="presidio-mese">${r.entro || "—"}</td>
       <td class="presidio-stato">${r.stato}</td>
       <td>${r.azione}</td>
     </tr>`).join("");
@@ -516,7 +517,7 @@ function buildPresidio() {
     </div>
     <div class="presidio-sub">${PRESIDIO.sottotitolo}</div>
     <table class="presidio-table">
-      <thead><tr><th>Cliente</th><th>Mese</th><th>Impegni previsti</th><th>Stato</th><th>Prossima azione</th></tr></thead>
+      <thead><tr><th>Cliente</th><th>Mese</th><th>Impegni previsti</th><th>Entro</th><th>Stato</th><th>Prossima azione</th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
     <div class="presidio-legend">${PRESIDIO.legenda}</div>`;
