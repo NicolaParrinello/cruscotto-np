@@ -43,20 +43,6 @@
   .metric-value { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; line-height: 1; }
   .metric-sub { font-size: 11px; color: var(--text3); margin-top: 4px; }
 
-  /* Presidio Impegni da Mandato */
-  .presidio { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 1.75rem; }
-  .presidio-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .presidio-head h2 { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
-  .presidio-sub { font-size: 11px; color: var(--text3); margin-bottom: 12px; }
-  .presidio-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .presidio-table th { text-align: left; font-weight: 500; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; padding: 0 10px 6px 0; border-bottom: 0.5px solid var(--border); }
-  .presidio-table td { padding: 8px 10px 8px 0; border-bottom: 0.5px solid var(--border); color: var(--text2); vertical-align: top; }
-  .presidio-table tr:last-child td { border-bottom: none; }
-  .presidio-mese { font-family: var(--font-mono); color: var(--text); white-space: nowrap; }
-  .presidio-stato { white-space: nowrap; font-weight: 500; }
-  .presidio-legend { font-size: 11px; color: var(--text3); margin-top: 10px; }
-  @media (max-width: 600px) { .presidio-table, .presidio-table tbody, .presidio-table tr, .presidio-table td { display: block; } .presidio-table thead { display: none; } .presidio-table td { padding: 2px 0; border: none; } .presidio-table tr { border-bottom: 0.5px solid var(--border); padding: 8px 0; } }
-
   /* Filters */
   .toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 1.25rem; }
   .filters { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -156,8 +142,6 @@
 
   <div class="metrics" id="metrics-strip"></div>
 
-  <section class="presidio" id="presidio-impegni" aria-label="Presidio Impegni da Mandato"></section>
-
   <div class="toolbar">
     <div class="filters" id="filters-bar" role="group" aria-label="Filtra per stato"></div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
@@ -181,7 +165,7 @@
 <script>
 const DATA = {
   version: "v0.1",
-  aggiornato: "29/06/2026 — agg. 12",
+  aggiornato: "29/06/2026 — agg. 13",
   progetti: [
     {
       id: "NP-CLI-001",
@@ -426,20 +410,6 @@ const DATA = {
   ]
 };
 
-const PRESIDIO = {
-  titolo: "Presidio Impegni da Mandato",
-  sottotitolo: "Vista sintetica (sola lettura). Fonte unica del dato: 06_Registro_Impegni_Mandato.md nel fascicolo cliente. Appuntamenti reali: Google Calendar.",
-  righe: [
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-07 Lug", impegni: "4 interventi sede + riunione settimanale", entro: "05/07/2026", stato: "🟡 da pianificare", azione: "Fissare calendario del mese con Giuseppe Laudicina / responsabile amministrativa" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-08 Ago", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-09 Set", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-10 Ott", impegni: "4 interventi sede + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Fissare calendario del mese" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2026-11/12", impegni: "da definire + riunione settimanale", entro: "inizio mese", stato: "🟡 da pianificare", azione: "Mappatura, strumenti di rilevazione, budget 2027" },
-    { cliente: "Baglio Oro (NP-CLI-003)", mese: "2027-01 → 2028-06", impegni: "Presidio mensile fase esercizio", entro: "—", stato: "⚪ non ancora attivo", azione: "Attivare righe mensili al rollover di dicembre 2026" }
-  ],
-  legenda: "Semaforo: 🟢 tutto fissato/svolto · 🟡 da pianificare ma non ancora scaduto (entro la data limite) · 🔴 scaduto / non fissato entro il termine / non svolto · ⚪ non ancora attivo."
-};
-
 const STATI = [
   { key: "all", label: "Tutti" },
   { key: "in-corso", label: "In corso" },
@@ -496,31 +466,6 @@ function buildMetrics() {
       ${m.sub ? `<div class="metric-sub">${m.sub}</div>` : ""}
     </div>
   `).join("");
-}
-
-function buildPresidio() {
-  const el = document.getElementById("presidio-impegni");
-  if (!el) return;
-  const rows = PRESIDIO.righe.map(r => `
-    <tr>
-      <td>${r.cliente}</td>
-      <td class="presidio-mese">${r.mese}</td>
-      <td>${r.impegni}</td>
-      <td class="presidio-mese">${r.entro || "—"}</td>
-      <td class="presidio-stato">${r.stato}</td>
-      <td>${r.azione}</td>
-    </tr>`).join("");
-  el.innerHTML = `
-    <div class="presidio-head">
-      <span aria-hidden="true">🗓️</span>
-      <h2>${PRESIDIO.titolo}</h2>
-    </div>
-    <div class="presidio-sub">${PRESIDIO.sottotitolo}</div>
-    <table class="presidio-table">
-      <thead><tr><th>Cliente</th><th>Mese</th><th>Impegni previsti</th><th>Entro</th><th>Stato</th><th>Prossima azione</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div class="presidio-legend">${PRESIDIO.legenda}</div>`;
 }
 
 function buildFilters() {
@@ -614,7 +559,6 @@ function init() {
   document.getElementById("last-update").textContent = "Aggiornato: " + DATA.aggiornato;
   document.getElementById("footer-version").textContent = DATA.version + " · Segreteria NP";
   buildMetrics();
-  buildPresidio();
   buildFilters();
   render();
 
