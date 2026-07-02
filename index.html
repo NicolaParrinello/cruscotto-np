@@ -163,217 +163,7 @@
 </div>
 
 <script>
-const DATA = {
-  version: "v0.1",
-  aggiornato: "02/07/2026 — agg. 18",
-  progetti: [
-    {
-      id: "NP-CLI-001",
-      titolo: "Revisione bozza bilancio — Renovra SRL",
-      tipo: "Cliente",
-      apertura: "24/06/2026",
-      stato: "attesa-cliente",
-      statoLabel: "In attesa cliente",
-      priorita: "media",
-      prioritaLabel: "Media",
-      criticita: "media",
-      ultimaAzione: "Bozza revisionata; note predisposte e inviate al cliente.",
-      prossimaAzione: "Attendere nuova bozza di bilancio da Renovra SRL.",
-      scadenza: "da integrare",
-      ambiente: "Progetto Claude \"Revisioni\"",
-      note: "Gruppo HOLCON — verificare operazioni infragruppo.",
-      percorso: "100.CLIENTI\\RENOVRA_SRL\\NP-CLI-001_Revisione_Bozza_Bilancio\\"
-    },
-    {
-      id: "NP-CLI-003",
-      titolo: "Baglio Oro — Controllo di Gestione & Cruscotto Direzionale",
-      tipo: "Cliente (controllo di gestione)",
-      apertura: "25/06/2026",
-      stato: "in-corso",
-      statoLabel: "In corso — avvio fase impianto 01/07/2026",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Predisposto il pack progetto Claude (00.PACK_CLAUDE_PROGETTO_BAGLIO_ORO): Scheda Fondativa Partner CdG&BSC v1.0 + KN-01 v1.0 + documenti cliente. Mandato firmato il 26/06/2026 (decorrenza 01/07/2026, durata 24 mesi fino al 30/06/2028).",
-      prossimaAzione: "Attivare il progetto Claude verticale «Baglio Oro S.S. — Controllo di gestione» e caricare il pack; completare dati anagrafici e perimetro iniziale; applicare la metodologia KN-01 (Full + Direct Costing ibrido).",
-      scadenza: "Avvio fase impianto 01/07/2026 (fase impianto lug–dic 2026; incarico fino 30/06/2028)",
-      ambiente: "Progetto Claude \"Baglio Oro S.S. — Controllo di gestione\"",
-      note: "Mandato firmato — fase impianto da avviare dal 01/07/2026. Terreni DA VERIFICARE. Attività mista agricola/commerciale/eventi con metodi di costing differenziati. Primo lavoro reale destinato al Partner CdG & BSC (NP-GOV-006). Presidio operativo di dettaglio demandato ad Agenda Impegni NP / Codex.",
-      percorso: "100.CLIENTI\\BAGLIO_ORO\\NP-CLI-003_Controllo_Gestione\\"
-    },
-    {
-      id: "NP-CLI-004",
-      titolo: "Revisione bozza bilancio — Domus Aurea SRL",
-      tipo: "Cliente",
-      apertura: "25/06/2026",
-      stato: "attesa-cliente",
-      statoLabel: "In attesa cliente",
-      priorita: "media",
-      prioritaLabel: "Media",
-      criticita: "media",
-      ultimaAzione: "Apertura fascicolo via /apri-progetto: creata cartella, Scheda di Apertura e file iniziali. Note di revisione preliminare predisposte e inviate al cliente via mail il 25/06/2026.",
-      prossimaAzione: "Attendere nuova bozza di bilancio corretta da Domus Aurea SRL; riaprire l'attività e avviare la seconda revisione per concludere il lavoro.",
-      scadenza: "da integrare — scadenza assembleare non comunicata",
-      ambiente: "Progetto Claude \"Revisioni\"",
-      note: "Documenti presenti: bozza di bilancio e visura camerale. Referente cliente, esercizio di riferimento e ruolo di Nicola da definire.",
-      invioNote: "25/06/2026",
-      percorso: "100.CLIENTI\\DOMUS_AUREA_SRL\\NP-CLI-004_Revisione_Bozza_Bilancio\\"
-    },
-    {
-      id: "NP-GOV-001",
-      titolo: "Ecosistema NP — Fase 2 messa in esercizio",
-      tipo: "Governance",
-      apertura: "24/06/2026",
-      stato: "in-corso",
-      statoLabel: "In corso",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Registri operativi creati e utilizzati in esercizio; Cruscotto GitHub Pages funzionante; skill /apri-progetto testata positivamente; procedure provvisorie /studia-fonti e /check-ecosistema v0.1 create/testate; avviata separazione tra Regia Universo NP e progetto operativo clienti/lavori.",
-      prossimaAzione: "Mantenere allineati Registro Progetti, Cruscotto e log operativi; completare manutenzioni leggere residue; testare Partner Finanza d'Impresa BP&PEF su primo caso reale; registrare la nuova architettura ChatGPT Regia / Operativo come nota di governance.",
-      scadenza: "da integrare",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Fondativo — blocca l'intero ecosistema se interrotto.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
-    },
-    {
-      id: "NP-GOV-002",
-      titolo: "Normalizzazione soci digitali legacy",
-      tipo: "Governance",
-      apertura: "24/06/2026",
-      stato: "sospeso",
-      statoLabel: "Sospeso",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Classificato come sospeso in attesa di NP-GOV-001.",
-      prossimaAzione: "Riprendere dopo completamento NP-GOV-001.",
-      scadenza: "Subordinato a NP-GOV-001",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Rischio: promuovere soci non conformi se anticipato.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
-    },
-    {
-      id: "NP-GOV-003",
-      titolo: "Test scheda standard — Primo caso reale",
-      tipo: "Governance",
-      apertura: "24/06/2026",
-      stato: "completato",
-      statoLabel: "Completato",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "bassa",
-      ultimaAzione: "Skill /apri-progetto testata su NP-CLI-001 (Renovra SRL) con esito positivo. Fascicolo creato correttamente.",
-      prossimaAzione: "—",
-      scadenza: "—",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Test completato. Scheda Standard v0.1 validata.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
-    },
-    {
-      id: "NP-GOV-004",
-      titolo: "Cruscotto Attività NP",
-      tipo: "Governance",
-      apertura: "24/06/2026",
-      stato: "completato",
-      statoLabel: "Completato",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "bassa",
-      ultimaAzione: "Prima release pubblicata su GitHub Pages. Correzioni tecniche applicate (stati, metrica In attesa, NP-GOV-004).",
-      prossimaAzione: "Aggiornare Registro e Cruscotto nella stessa sessione ad ogni cambio di stato progetto.",
-      scadenza: "—",
-      ambiente: "UNIVERSO CLAUDE / Claude Code + GitHub Pages",
-      note: "Cruscotto operativo assistito da Claude Code. Non è un sistema live automatico: è una vista statica aggiornata tramite modifica/push dei dati. Il Registro Progetti Attivi resta la fonte operativa principale.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\ + web-cruscotto\\"
-    },
-    {
-      id: "NP-GOV-005",
-      titolo: "Mappatura e priorità Soci Digitali Verticali",
-      tipo: "Governance",
-      apertura: "25/06/2026",
-      stato: "in-corso",
-      statoLabel: "In corso",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Mappatura soci digitali verticali avviata; Partner Controllo di Gestione & Balanced Scorecard normalizzato come primo socio verticale; chiarita distinzione NP-GOV-005 / NP-GOV-006; avviato Partner Finanza d'Impresa BP&PEF come secondo socio in costruzione.",
-      prossimaAzione: "Validare la mappa di priorità soci digitali verticali; confermare stato NP-GOV-006; testare Partner Finanza d'Impresa BP&PEF su primo caso reale; evitare creazione di nuovi soci fino a completamento dei test già aperti.",
-      scadenza: "da integrare",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "MAPPA_ARGOMENTI_SOCI.md ancora in stato BOZZA DA VALIDARE. Non creare nuovi soci fino a completamento test già aperti.",
-      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\"
-    },
-    {
-      id: "NP-GOV-006",
-      titolo: "Verifica operativa Partner CdG & BSC — primo ciclo Learning Patch",
-      tipo: "Governance",
-      apertura: "25/06/2026",
-      stato: "in-corso",
-      statoLabel: "In corso",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Partner Controllo di Gestione & Balanced Scorecard testato positivamente nella prima verifica operativa; chiarito il collegamento con Biblioteca Professionale Evolutiva e ciclo Learning Patch.",
-      prossimaAzione: "Produrre e testare la prima Knowledge Note / Learning Patch specifica per il Partner CdG & BSC, verificandone trasferibilità, utilità operativa e coerenza con NP_DNA.",
-      scadenza: "da integrare",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Nessuna Knowledge Note / Learning Patch ancora prodotta. Correzioni metodologiche emerse dal test (MOL) da formalizzare nella prima LP.",
-      percorso: "01.Ecosistema NP\\04.Soci Digitali\\01.Partner Controllo Gestione BSC\\"
-    },
-    {
-      id: "NP-GOV-007",
-      titolo: "Partner Finanza d'Impresa, Business Plan & PEF",
-      tipo: "Governance / Socio Digitale Verticale",
-      apertura: "25/06/2026",
-      stato: "da-avviare",
-      statoLabel: "In apertura / in costruzione",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Scheda Fondativa v0.1 prodotta e archiviata (.docx, copia verificata via SHA-256). Cartella socio creata.",
-      prossimaAzione: "Testare la Scheda Fondativa v0.1 su un primo caso concreto di PEF.",
-      scadenza: "da integrare",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Socio non ancora stabile: non è una skill e non va censito nel Registro Skill. Non confondere il caso cliente concreto con il documento fondativo del socio.",
-      percorso: "01.Ecosistema NP\\04.Soci Digitali\\02.Partner Finanza Impresa BP PEF\\"
-    },
-    {
-      id: "NP-GOV-008",
-      titolo: "Progettazione Partner Comunicazione, Voce Editoriale & Reputazione NP",
-      tipo: "Governance / Progettazione Socio Digitale Verticale",
-      apertura: "25/06/2026",
-      stato: "da-avviare",
-      statoLabel: "Da aprire — progettazione",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "media",
-      ultimaAzione: "Cantiere aperto e registrato: progettazione del Partner che custodisce e sviluppa la voce editoriale, reputazionale e strategica di NP / Metis su blog, Substack, LinkedIn, WhatsApp e futuri canali. Fase di progettazione, non di produzione.",
-      prossimaAzione: "Progettare Scheda Fondativa v0.1 e primo test su articolo modello \"Anatomia di una Frattura Epocale\".",
-      scadenza: "da integrare",
-      ambiente: "UNIVERSO CLAUDE / Claude Code",
-      note: "Socio in progettazione: non promosso a stabile, non è una skill, non va censito nel Registro Skill. NP_DNA e Registro Versioni non modificati. Comunicazione reputazionale, non marketing operativo. Scheda Fondativa = prossima azione, non prodotto di questa apertura.",
-      percorso: "01.Ecosistema NP\\04.Soci Digitali\\ (cartella socio non ancora creata)"
-    },
-    {
-      id: "NP-CLI-007",
-      titolo: "PEF Piscina Comunale Gibellina — Proposta PPP/EPC CELI S.p.A.",
-      tipo: "Cliente (PEF / finanza d'impresa)",
-      apertura: "29/06/2026",
-      stato: "da-avviare",
-      statoLabel: "In istruttoria / analisi preliminare",
-      priorita: "alta",
-      prioritaLabel: "Alta",
-      criticita: "alta",
-      ultimaAzione: "Apertura fascicolo via /apri-progetto: creata cartella, Scheda di Apertura e file iniziali. Operazione PPP/EPC per riqualificazione energetica della piscina comunale con accesso al Conto Termico 3.0; equity CELI ~€ 265.446,90.",
-      prossimaAzione: "Archiviare i 4 documenti ricevuti in 03_Documenti_Ricevuti; lettura ricognitiva e completamento mappatura dati disponibili/mancanti; impostare il modello PEF solo su attivazione esplicita di Nicola.",
-      scadenza: "da integrare — termine proposta al Comune non comunicato",
-      ambiente: "Progetto Claude \"NP Operativo — Clienti e Lavori\" / Partner Finanza d'Impresa BP&PEF",
-      note: "PPP/EPC non assimilabile a investimento industriale classico: rischio di costruzione/operativo/performance da allocare e modellare. Dipendenza dal contributo Conto Termico 3.0; controparte pubblica (Comune di Gibellina) con vincoli di bilancio; marginalità CELI da verificare. Primo caso reale di test del Partner Finanza d'Impresa BP&PEF (NP-GOV-007). Nessuna valutazione tecnica definitiva prodotta in questa fase.",
-      percorso: "100.CLIENTI\\CELI_ENERGIA_E_COSTRUZIONI_SPA\\NP-CLI-007_PEF_Piscina_Gibellina\\"
-    }
-  ]
-};
+let DATA = { version: "", aggiornato: "", progetti: [] };
 
 const STATI = [
   { key: "all", label: "Tutti" },
@@ -533,7 +323,17 @@ function init() {
   });
 }
 
-init();
+// Dati caricati da data.js con anti-cache: il browser scarica sempre la versione fresca.
+(function loadData(){
+  var s = document.createElement('script');
+  s.src = 'data.js?_=' + Date.now();
+  s.onload = function(){ DATA = window.CRUSCOTTO_DATA; init(); };
+  s.onerror = function(){
+    var el = document.getElementById('projects-list');
+    if (el) el.innerHTML = '<div class="empty"><div class="empty-icon">&#9888;</div><p>Impossibile caricare i dati (data.js). Ricarica la pagina.</p></div>';
+  };
+  document.head.appendChild(s);
+})();
 </script>
 </body>
 </html>
