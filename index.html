@@ -206,13 +206,14 @@ function buildMetrics() {
   const stati = {};
   DATA.progetti.forEach(p => { stati[p.stato] = (stati[p.stato] || 0) + 1; });
 
+  const conclusi = (DATA.conclusi || []).length;
   const strip = document.getElementById("metrics-strip");
   const items = [
-    { label: "Totale", value: totale, sub: "progetti" },
+    { label: "Attivi", value: totale, sub: "in plancia" },
     { label: "In corso", value: stati["in-corso"] || 0, sub: "attivi" },
     { label: "In attesa", value: (stati["attesa-cliente"] || 0) + (stati["attesa-documenti"] || 0), sub: "cliente/docs" },
     { label: "Sospeso", value: stati["sospeso"] || 0, sub: "" },
-    { label: "Completato", value: stati["completato"] || 0, sub: "" }
+    { label: "Conclusi", value: conclusi, sub: "archiviati" }
   ];
   strip.innerHTML = items.map(m => `
     <div class="metric">
@@ -226,10 +227,14 @@ function buildMetrics() {
 function buildFilters() {
   const bar = document.getElementById("filters-bar");
   const usedStati = new Set(DATA.progetti.map(p => p.stato));
-  bar.innerHTML = STATI
+  let html = STATI
     .filter(s => s.key === "all" || usedStati.has(s.key))
     .map(s => `<button class="filter-btn${s.key === activeFilter ? " active" : ""}" onclick="setFilter('${s.key}', this)">${s.label}</button>`)
     .join("");
+  if ((DATA.conclusi || []).length) {
+    html += `<button class="filter-btn${activeFilter === "conclusi" ? " active" : ""}" onclick="setFilter('conclusi', this)">Conclusi (${DATA.conclusi.length})</button>`;
+  }
+  bar.innerHTML = html;
 }
 
 function setFilter(key, btn) {
@@ -293,8 +298,54 @@ function cardHTML(p) {
   </article>`;
 }
 
+function concludedCardHTML(p) {
+  return `
+  <article class="card crit-bassa" data-search="${(p.id + " " + p.titolo + " " + (p.tipo || "")).toLowerCase()}">
+    <div class="card-header">
+      <div class="card-meta">
+        <div class="card-id">${p.id}</div>
+        <div class="card-title">${p.titolo}</div>
+        <div class="card-tipo">${p.tipo || ""}</div>
+      </div>
+      <div class="badges">
+        <span class="badge stato-completato">Concluso</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="grid-column: 1/-1">
+        <div class="field-label">${fieldIcon("last")} Esito finale</div>
+        <div class="field-value">${p.esito}</div>
+      </div>
+      <div>
+        <div class="field-label">${fieldIcon("cal")} Chiusura lato NP</div>
+        <div class="field-value highlight">${p.dataChiusura}</div>
+      </div>
+      <div>
+        <div class="field-label">${fieldIcon("env")} Socio principale</div>
+        <div class="field-value">${p.socio || "—"}</div>
+      </div>
+      ${p.coda ? `<div style="grid-column: 1/-1"><div class="field-label">${fieldIcon("note")} Coda residua / note</div><div class="field-value">${p.coda}</div></div>` : ""}
+    </div>
+    <div class="card-footer">
+      <span class="card-path">${p.percorso}</span>
+      <span class="card-dates"><span class="card-date">Registro Progetti Conclusi</span></span>
+    </div>
+  </article>`;
+}
+
 function render() {
   const list = document.getElementById("projects-list");
+
+  if (activeFilter === "conclusi") {
+    const items = (DATA.conclusi || []).filter(p =>
+      !searchQuery || (p.id + " " + p.titolo + " " + (p.tipo || "")).toLowerCase().includes(searchQuery));
+    document.getElementById("count-label").textContent = items.length + " conclus" + (items.length === 1 ? "o" : "i");
+    list.innerHTML = items.length
+      ? items.map(concludedCardHTML).join("")
+      : `<div class="empty"><div class="empty-icon">○</div><p>Nessun progetto concluso.</p></div>`;
+    return;
+  }
+
   let filtered = DATA.progetti.filter(p => {
     const matchStato = activeFilter === "all" || p.stato === activeFilter;
     const matchSearch = !searchQuery || (p.id + " " + p.titolo + " " + p.tipo).toLowerCase().includes(searchQuery);

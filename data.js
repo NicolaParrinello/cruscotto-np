@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "02/07/2026 — agg. 18",
+  aggiornato: "02/07/2026 — agg. 19",
   progetti: [
     {
       id: "NP-CLI-001",
@@ -206,6 +206,38 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Progetto Claude \"NP Operativo — Clienti e Lavori\" / Partner Finanza d'Impresa BP&PEF",
       note: "PPP/EPC non assimilabile a investimento industriale classico: rischio di costruzione/operativo/performance da allocare e modellare. Dipendenza dal contributo Conto Termico 3.0; controparte pubblica (Comune di Gibellina) con vincoli di bilancio; marginalità CELI da verificare. Primo caso reale di test del Partner Finanza d'Impresa BP&PEF (NP-GOV-007). Nessuna valutazione tecnica definitiva prodotta in questa fase.",
       percorso: "100.CLIENTI\\CELI_ENERGIA_E_COSTRUZIONI_SPA\\NP-CLI-007_PEF_Piscina_Gibellina\\"
+    }
+  ],
+  conclusi: [
+    {
+      id: "NP-CLI-002",
+      titolo: "Revisione Bozza Bilancio — Esselle10 Srl",
+      tipo: "Cliente / Pratica",
+      esito: "Revisione della bozza di bilancio completata: prima revisione con note inviate al cliente (24/06/2026); nuova bozza corretta ricevuta il 02/07/2026, analizzata e lavorata; richieste e ottenute ulteriori integrazioni; seconda revisione conclusa. Lavoro NP chiuso.",
+      dataChiusura: "02/07/2026",
+      socio: "Revisione Legale e Sindaco",
+      coda: "Documenti ricevuti da archiviare in 03_Documenti_Ricevuti. Nessuna azione operativa NP residua.",
+      percorso: "100.CLIENTI\\ESSELLE10_SRL\\NP-CLI-002_Revisione_Bozza_Bilancio\\"
+    },
+    {
+      id: "NP-CLI-006",
+      titolo: "Relazione di Revisione — SPADA INVESTIMENTS GROUP SRL",
+      tipo: "Cliente / Pratica",
+      esito: "Revisione legale dei conti completata; relazione di revisione emessa e consegnata/protocollata (conferma 01/07/2026). Lavoro NP chiuso.",
+      dataChiusura: "01/07/2026",
+      socio: "Revisione Legale e Sindaco",
+      coda: "Metadati di fascicolo da integrare quando disponibili: esercizio di riferimento, referente cliente, ruolo NP (revisore unico/collegio). Coda amministrativa, non operativa.",
+      percorso: "100.CLIENTI\\SPADA_INVESTIMENTS_GROUP_SRL\\NP-CLI-006_Revisione_Legale\\"
+    },
+    {
+      id: "NP-CLI-005",
+      titolo: "Supervisione Bilancio 2025 — LPI SRL",
+      tipo: "Cliente / Pratica",
+      esito: "Attività advisory conclusa: analisi critica della nuova bozza completata; note con i rilievi predisposte e inviate al commercialista. Ruolo advisory, NON revisione legale.",
+      dataChiusura: "26/06/2026",
+      socio: "Analisi Finanziaria (area Malvezzi)",
+      coda: "Follow-up presso Antonio Vetro ad Agrigento in capo al commercialista, fuori perimetro NP. Nessuna azione NP residua.",
+      percorso: "100.CLIENTI\\LPI_SRL\\NP-CLI-005_Supervisione_Bilancio_2025\\"
     }
   ]
 };
