@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "27/07/2026 — inserito NP-GOV-009",
+  aggiornato: "27/07/2026 — allineato NP-CLI-010",
   progetti: [
     {
       id: "NP-CLI-001",
@@ -223,6 +223,23 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Progetto Claude \"NP Operativo — Clienti e Lavori\" / Partner Finanza d'Impresa BP&PEF",
       note: "PPP/EPC non assimilabile a investimento industriale classico: rischio di costruzione/operativo/performance da allocare e modellare. Dipendenza dal contributo Conto Termico 3.0; controparte pubblica (Comune di Gibellina) con vincoli di bilancio; marginalità CELI da verificare. Primo caso reale di test del Partner Finanza d'Impresa BP&PEF (NP-GOV-007). Nessuna valutazione tecnica definitiva prodotta in questa fase.",
       percorso: "100.CLIENTI\\CELI_ENERGIA_E_COSTRUZIONI_SPA\\NP-CLI-007_PEF_Piscina_Gibellina\\"
+    },
+    {
+      id: "NP-CLI-010",
+      titolo: "Diagnosi liquidità e modello operativo 2024-2026 — Pintabona Vincenzo",
+      tipo: "Cliente — controllo di gestione e finanza d'impresa",
+      apertura: "27/07/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Fascicolo e pacchetto Claude predisposti; disponibili visura, dichiarazione 2024, CE 2025 e situazione al 30/06/2026; contesto del progetto allineato.",
+      prossimaAzione: "Acquisire situazione contabile 2024 e documenti finanziari/operativi di Priorità 1; nessuna analisi tecnica prima dell'attivazione esplicita di Nicola.",
+      scadenza: "da integrare",
+      ambiente: "Partner Controllo di Gestione & Balanced Scorecard",
+      note: "Comprendere le cause della carenza sistematica di liquidità a fronte di risultati economici apparentemente positivi e predisporre un piano di intervento sostenibile. Criticità: assenza situazione contabile 2024, dipendenza dal titolare, necessità di separare utile contabile, reddito fiscale, reddito concordato e cassa.",
+      percorso: "100.CLIENTI\\PINTABONA_VINCENZO\\NP-CLI-010_Diagnosi_Liquidita_Modello_Operativo_2024_2026\\"
     }
   ],
   conclusi: [
