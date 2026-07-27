@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "02/07/2026 — agg. 19",
+  aggiornato: "27/07/2026 — inserito NP-GOV-009",
   progetti: [
     {
       id: "NP-CLI-001",
@@ -189,6 +189,23 @@ window.CRUSCOTTO_DATA = {
       ambiente: "UNIVERSO CLAUDE / Claude Code",
       note: "Socio in progettazione: non promosso a stabile, non è una skill, non va censito nel Registro Skill. NP_DNA e Registro Versioni non modificati. Comunicazione reputazionale, non marketing operativo. Scheda Fondativa = prossima azione, non prodotto di questa apertura.",
       percorso: "01.Ecosistema NP\\04.Soci Digitali\\ (cartella socio non ancora creata)"
+    },
+    {
+      id: "NP-GOV-009",
+      titolo: "Validazione integrale e messa in produzione Corpus MasterBANK",
+      tipo: "Governance Ecosistema NP / Knowledge Base",
+      apertura: "27/07/2026",
+      stato: "in-corso",
+      statoLabel: "In corso — Fase 2A, validazione interna e metodologica in Claude",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "alta",
+      ultimaAzione: "Completata la Fase 1: mappatura, inventario e preparazione del pacchetto di validazione.",
+      prossimaAzione: "Creazione del progetto Claude e produzione del Rapporto di validazione interna e metodologica.",
+      scadenza: "da integrare",
+      ambiente: "Claude — progetto verticale Corpus MasterBANK",
+      note: "Provenienza non uniformemente dimostrata per gli undici documenti principali; assenza del modello Excel; formule e tassonomie da canonizzare; mancanza dei casi test.",
+      percorso: "50.Argomenti STUDIO\\04.FINANZA_IMPRESA_BUSINESS_PLAN\\00.PROGETTO_CLAUDE_LOAD\\MASTERBANK_VALIDAZIONE_INTEGRALE"
     },
     {
       id: "NP-CLI-007",
