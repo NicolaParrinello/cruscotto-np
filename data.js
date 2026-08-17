@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "01/08/2026 — agg. 1",
+  aggiornato: "17/08/2026 — agg. 2",
   progetti: [
     {
       id: "NP-CLI-008",
@@ -273,6 +273,74 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Partner Operazioni Straordinarie",
       note: "Riservatezza MASSIMA. Ricostruire assetto, partecipazioni e rapporti economico-finanziari della famiglia e valutare scenari di riorganizzazione sostenibili e difendibili (soluzione aperta, non predeterminata). Documenti originali da non spostare, rinominare o copiare.",
       percorso: "100.CLIENTI\\FAMIGLIA_PARRINELLO\\NP-FND-001_Riorganizzazione_Societaria_Patrimoniale\\"
+    },
+    {
+      id: "NP-CLI-012",
+      titolo: "Comune di Catania — Piano di fattibilità commerciale e linee guida per il PRG",
+      tipo: "Cliente / Pratica — ente pubblico (pre-incarico)",
+      apertura: "03/08/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "alta",
+      ultimaAzione: "Fascicolo aperto via /apri-progetto v0.3. Nessun documento ufficiale del Comune acquisito: disponibili solo informazioni raccolte in incontri preliminari, tutte da verificare. Handoff /prepara-upload-claude tracciato, pacchetto metodologico NON generato su istruzione di Nicola.",
+      prossimaAzione: "Predisporre il pacchetto metodologico e di studio; individuare le competenze specialistiche provvisorie; costruire la prima matrice dei dati da richiedere al Comune; avviare la ricerca normativa e comparativa sui piani commerciali comunali italiani. Nessuna analisi tecnica prima di attivazione esplicita di Nicola.",
+      scadenza: "da integrare",
+      ambiente: "Consiglio Strategico (Strategia Aziendale e Territoriale)",
+      note: "Titolo provvisorio: incarico probabile ma NON ancora confermato documentalmente (determina/delibera/convenzione/capitolato mancanti). Obiettivo: quadro conoscitivo del sistema commerciale urbano, sistema di indicatori, individuazione di aree, polarità e squilibri, linee guida per lo sviluppo del commercio cittadino connesse al PRG. Competenza su pianificazione commerciale comunale non formalizzata.",
+      percorso: "100.CLIENTI\\COMUNE_CATANIA\\NP-CLI-012_Piano_Fattibilita_Commerciale_PRG\\"
+    },
+    {
+      id: "NP-CLI-013",
+      titolo: "COREPLAST — Controllo di Gestione e Advisory Direzionale",
+      tipo: "Cliente — advisory direzionale permanente",
+      apertura: "06/08/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Fascicolo aperto via /apri-progetto v0.3. Handoff /prepara-upload-claude tracciato: la composizione controllata del pacchetto è demandata a Codex, pacchetto NON generato in apertura.",
+      prossimaAzione: "Affidare a Codex la raccolta del pacchetto metodologico, formativo e operativo per il progetto Claude; acquisire visura e workbook Excel di controllo di gestione (indicativamente 15 fogli, in sola lettura). Non modificare il file Excel prima di averne compreso e validato l'architettura.",
+      scadenza: "da integrare",
+      ambiente: "Partner Controllo di Gestione & Balanced Scorecard",
+      note: "Titolo provvisorio: denominazione sociale e forma giuridica DA VERIFICARE sui documenti. Cliente già assistito dallo Studio per contabilità, fiscale e advisory. Percorso in tre fasi: audit del sistema di controllo esistente, implementazione e messa a regime, advisory direzionale e strategico.",
+      percorso: "100.CLIENTI\\COREPLAST\\NP-CLI-013_Controllo_Gestione_Advisory_Direzionale\\"
+    },
+    {
+      id: "NP-FND-002",
+      titolo: "TERRA DIVES — Strategia, Posizionamento e Sviluppo Commerciale DIVES",
+      tipo: "Fondativo (personale/fondativo Nicola — Terra Dives / Metis)",
+      apertura: "10/08/2026",
+      stato: "attesa-documenti",
+      statoLabel: "Attivo — da istruire",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Baseline Strategica DIVES v0.1 fornita dalla Regia e depositata in 01_BASELINE_STRATEGICA; contenitore vuoto archiviato in 99_Archivio. L'ancora di continuità è ora presente e lo stato è passato da In apertura ad Attivo — da istruire.",
+      prossimaAzione: "Depositare in area 05 il primo report del responsabile posizionamento. Analisi solo su attivazione esplicita di Nicola, con la Griglia FATTO / INTERPRETAZIONE / IPOTESI / EVIDENZA MANCANTE (baseline §19). Handoff /prepara-upload-claude tracciato ma SOSPESO su richiesta di Nicola.",
+      scadenza: "da integrare",
+      ambiente: "Consiglio Strategico (Strategia Aziendale e Territoriale)",
+      note: "Terra Dives S.r.l. — prodotto DIVES (bevanda a base di vino). Presidiare il fascicolo SENZA ricostruire o inventare la strategia: la baseline v0.1 è la fonte ufficiale, va letta dal file e non ricostruita. Mancano report di posizionamento, dati commerciali per cliente/prodotto/canale, materiali Ho.Re.Ca. e GDO, analisi mercato/competitor.",
+      percorso: "100.CLIENTI\\TERRA_DIVES\\NP-FND-002_Strategia_Posizionamento_Sviluppo_Commerciale_DIVES\\"
+    },
+    {
+      id: "NP-CLI-014",
+      titolo: "SOMADER S.r.l. — Baglio Borgesati — Revisione Legale e Controllo di Gestione",
+      tipo: "Cliente — incarico di revisione legale continuativo",
+      apertura: "17/08/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "Fascicolo aperto via /apri-progetto v0.3. I quattro documenti dichiarati disponibili (visura CCIAA 05/05/2023, Bilancio 2025, Relazione del Revisore 2025, Relazione sulla Gestione 2025) NON sono ancora depositati in 03_Documenti_Ricevuti. Handoff /prepara-upload-claude tracciato, pacchetto NON generato su istruzione di Nicola.",
+      prossimaAzione: "Depositare i quattro documenti in 03_Documenti_Ricevuti con verifica hash SHA-256; acquisire la documentazione dell'incarico di revisione CONNEXIO/SOMADER e la visura camerale aggiornata; svolgere la verifica preventiva sull'indipendenza prima di attivare il perimetro di controllo di gestione. Nessun audit né analisi di bilancio prima di attivazione esplicita di Nicola.",
+      scadenza: "da integrare",
+      ambiente: "Revisione Legale e Controllo Societario (skill \\revisione — Connexio)",
+      note: "SOMADER S.r.l., CF/P.IVA 01753430816, sede legale Via San Leonardo 5, Salemi (TP); struttura operativa principale Baglio Borgesati, Contrada Borgesati, Salemi. Nicola opera quale revisore attraverso CONNEXIO S.r.l. Obiettivo: presidio continuativo economico, patrimoniale, finanziario e gestionale, con le informazioni del controllo di gestione integrate nel risk assessment. Il perimetro gestionale resta separato da quello revisionale e gli aspetti rilevanti per l'indipendenza vanno verificati preventivamente (art. 10 D.Lgs. 39/2010).",
+      percorso: "100.CLIENTI\\SOMADER_SRL\\NP-CLI-014_Revisione_Legale_Controllo_Gestione\\"
     }
   ],
   conclusi: [
