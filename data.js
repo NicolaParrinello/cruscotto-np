@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "09/11/2026 — agg. 1",
+  aggiornato: "11/11/2026 — agg. 2",
   progetti: [
     {
       id: "NP-CLI-008",
@@ -579,6 +579,23 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Partner Family Business (in costruzione)",
       note: "Medio — dotazione minima da decidere; percorso formativo in proposta",
       percorso: "50.Argomenti STUDIO\\13.FAMILY_BUSINESS_RICAMBIO_GENERAZIONALE\\"
+    },
+    {
+      id: "NP-GOV-015",
+      titolo: "Area Riservata NP — censimento, governo e replica del servizio",
+      tipo: "Governance / Infrastruttura di servizio ai clienti",
+      apertura: "11/11/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "media",
+      prioritaLabel: "Media",
+      criticita: "media",
+      ultimaAzione: "Censimento tecnico e Scheda tecnica Area Riservata NP v0.1 (11/11/2026); voce aperta e registrata lo stesso giorno. Pilota: NP-CLI-003 Baglio Oro.",
+      prossimaAzione: "Raccogliere le conferme dell'amministratore Workspace e della chat Baglio Oro (Scheda tecnica §10); decidere l'avvio della Fase A della replica con cliente fittizio (§11).",
+      scadenza: "da integrare",
+      ambiente: "Segreteria NP / Claude Code",
+      note: "Medio — app di calcolo legata a un solo foglio parametri; manifest Apps Script non versionato; responsabile della cancellazione dei dati di accesso da definire",
+      percorso: "01.Ecosistema NP\\03.Segreteria e Coordinamento\\NP-GOV-015_Area_Riservata_NP\\"
     }
   ],
   conclusi: [
