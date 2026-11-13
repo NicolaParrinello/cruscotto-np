@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "11/11/2026 — agg. 2",
+  aggiornato: "13/11/2026 — agg. 1",
   progetti: [
     {
       id: "NP-CLI-008",
@@ -488,11 +488,11 @@ window.CRUSCOTTO_DATA = {
       priorita: "media",
       prioritaLabel: "Media",
       criticita: "media",
-      ultimaAzione: "Fascicolo aperto il 02/11/2026; pacchetto Claude v1 preparato (06_UPLOAD_CLAUDE\\00_CORRENTE).",
-      prossimaAzione: "Caricare 06_UPLOAD_CLAUDE\\00_CORRENTE nel progetto Claude e avviare l'esame con 00_HANDOFF_PROGETTO_CLAUDE.md.",
+      ultimaAzione: "13/11/2026: app «Registro auto e ricambi» in esercizio nell'area riservata del sito (server v6), privacy del sito aggiornata, righe di prova cancellate, sorgenti archiviati con SHA-256 in 05_Output\\App_Registro_auto_sito_v6.",
+      prossimaAzione: "Nicola: nomina art. 28 e formalizzazione dell'incarico che copre l'app; decisione sulla regola del reso; sospendere prova-abate e consegnare le credenziali a Riccardo Stellino. Esame documentale ancora da avviare (06_UPLOAD_CLAUDE\\00_CORRENTE, 00_HANDOFF_PROGETTO_CLAUDE.md).",
       scadenza: "da integrare",
       ambiente: "Finanza d'Impresa, BP & PEF",
-      note: "Medio — autorizzazioni ambientali, atto di trasformazione e dati contabili da acquisire; entità Metis da confermare",
+      note: "Medio — autorizzazioni ambientali, atto di trasformazione e dati contabili da acquisire; entità Metis da confermare; app registro in esercizio senza incarico formalizzato né nomina art. 28",
       percorso: "100.CLIENTI\\ABATE_DEMOLIZIONI_SRL\\NP-CLI-022_Assessment_Pre_Incarico\\"
     },
     {
