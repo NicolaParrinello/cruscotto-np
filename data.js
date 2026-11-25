@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "13/11/2026 — agg. 1",
+  aggiornato: "25/11/2026 — agg. 1",
   progetti: [
     {
       id: "NP-CLI-008",
@@ -494,6 +494,23 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Finanza d'Impresa, BP & PEF",
       note: "Medio — autorizzazioni ambientali, atto di trasformazione e dati contabili da acquisire; entità Metis da confermare; app registro in esercizio senza incarico formalizzato né nomina art. 28",
       percorso: "100.CLIENTI\\ABATE_DEMOLIZIONI_SRL\\NP-CLI-022_Assessment_Pre_Incarico\\"
+    },
+    {
+      id: "NP-CLI-024",
+      titolo: "Cantina Casale Soc. Coop. Agr. — Studio NP",
+      tipo: "Cliente — progetto cliente permanente, consulenza professionale",
+      apertura: "25/11/2026",
+      stato: "in-corso",
+      statoLabel: "In corso",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "25/11/2026: fascicolo aperto e registrato; pacchetto Claude v1 generato con /prepara-upload-claude (17 file, hash verificati); iscritto nella Coda Deployment (PENDENTE).",
+      prossimaAzione: "Nicola: creare il progetto Claude, incollare le istruzioni approvate, caricare i 17 file e i documenti aziendali pertinenti dal proprio archivio; comunicare ID progetto e file caricati per attestazione e prova D; verificare il mandato. Analisi del bilancio non avviata.",
+      scadenza: "da integrare (termini di approvazione del bilancio 31.08.2026 da verificare)",
+      ambiente: "Partner Revisione Legale, Sindaco & Controllo Societario (PILOT, in funzione consulenziale)",
+      note: "Medio — Nicola consulente, non revisore; socio pilot non collaudato; nessuna competenza validata; riservatezza elevata",
+      percorso: "100.CLIENTI\CANTINA_CASALE_SOC_COOP_AGR\NP-CLI-024_Consulenza_Professionale_Permanente\\"
     },
     {
       id: "NP-GOV-010",
