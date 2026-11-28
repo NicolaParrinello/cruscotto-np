@@ -1,6 +1,6 @@
 window.CRUSCOTTO_DATA = {
   version: "v0.1",
-  aggiornato: "25/11/2026 — agg. 1",
+  aggiornato: "28/11/2026 — agg. 1",
   progetti: [
     {
       id: "NP-CLI-008",
@@ -511,6 +511,23 @@ window.CRUSCOTTO_DATA = {
       ambiente: "Partner Revisione Legale, Sindaco & Controllo Societario (PILOT, in funzione consulenziale)",
       note: "Medio — Nicola consulente, non revisore; socio pilot non collaudato; nessuna competenza validata; riservatezza elevata",
       percorso: "100.CLIENTI\CANTINA_CASALE_SOC_COOP_AGR\NP-CLI-024_Consulenza_Professionale_Permanente\\"
+    },
+    {
+      id: "NP-CLI-026",
+      titolo: "PIAZZA CONCEPT SRL – Controllo di Gestione e Revisione",
+      tipo: "Cliente — controllo di gestione, monitoraggio equilibri e revisione legale (perimetri separati)",
+      apertura: "28/11/2026",
+      stato: "da-avviare",
+      statoLabel: "In apertura",
+      priorita: "alta",
+      prioritaLabel: "Alta",
+      criticita: "media",
+      ultimaAzione: "28/11/2026: fascicolo aperto e registrato; documenti acquisiti con hash (bilanci 2023–2025, situazione al 31/10/2026, modello CdG, BP gen. 2026); collegamento esterno del modello mappato e sorgente acquisita; pacchetto Claude v2 (Knowledge consulenziale 14 + allegati 6; materiali di revisione separati e non da caricare); iscritto nella Coda Deployment (PENDENTE).",
+      prossimaAzione: "Regia: validare istruzioni v0.2, prompt v0.2, Project Memory v0.1 e manifesti; poi Nicola crea il progetto Claude e carica la Knowledge. Documentare mandati, entità e verifiche di indipendenza. Analisi non avviata.",
+      scadenza: "da integrare",
+      ambiente: "Partner Controllo di Gestione & BSC (Claude Projects, da creare)",
+      note: "Medio — consulenza e revisione sullo stesso cliente: indipendenza e autoriesame non risolti; risultato al 31/10/2026 non assestato; Socio Revisione pilot non collaudato",
+      percorso: "100.CLIENTI\\PIAZZA_CONCEPT_SRL\\NP-CLI-026_Controllo_Gestione_Revisione\\"
     },
     {
       id: "NP-GOV-010",
